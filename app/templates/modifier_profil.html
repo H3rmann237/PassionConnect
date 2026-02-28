@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block contenu %}
+    <h1>MODIFICATION</h1>
+    <form method="post">
+            <h2>Modifier la bio</h2>
+
+            <textarea name="bio">
+                        {{current_user.bio or ''}}
+            </textarea>
+            
+
+            <h2>Vos passions</h2>
+                {% for passion in toutes_passions %}
+                    <input type="checkbox" name="passions" value="{{passion.id}}" id="{{passion.id}}"><p>{{passion.icone}} {{passion.nom}}</p>
+                {% endfor %}
+
+            <button type="submit">Sauvegarder</button>
+    </form>
+{% endblock %}

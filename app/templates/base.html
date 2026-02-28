@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>PassionConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark px-4">
+        <a class="navbar-brand" href="/">🎨 PassionConnect</a>
+        <div>
+            {% if current_user.is_authenticated %}
+                <span class="text-white me-3">Bonjour, {{ current_user.username }} !</span>
+                <a href="/deconnexion" class="btn btn-outline-light btn-sm">Déconnexion</a>
+            {% else %}
+                <a href="/connexion" class="btn btn-outline-light btn-sm me-2">Connexion</a>
+                <a href="/inscription" class="btn btn-light btn-sm">Inscription</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% block contenu %}{% endblock %}
+    </div>
+
+</body>
+</html>
