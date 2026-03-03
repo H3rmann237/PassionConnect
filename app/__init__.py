@@ -22,6 +22,8 @@ def create_app():
     from app.profil.routes import profil
     app.register_blueprint(profil)
 
+    from app.decouverte.routes import decouverte
+    app.register_blueprint(decouverte)
 
     @login_manager.user_loader
     def load_user(user_id):
