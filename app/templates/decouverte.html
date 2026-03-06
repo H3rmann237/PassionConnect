@@ -1,19 +1,26 @@
 {% extends 'base.html' %}
+
 {% block contenu %}
     <h1 class="mb-4">Découvrir les membres</h1>
+    <p>Filtres: 
+        <a href="/decouverte">Tous</a>
+        {% for passion in toutes_passions %}
+            <a href="/decouverte?passion={{ passion.nom }}"> {{ passion.icone}} {{ passion.nom }} </a>
+        {% endfor %}
+    </p>
     <div class="row">
         {% for membre in poste %}
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">{{ membre.username }}</h5>
-                    <p class="card-text text-muted">
-                        {{ membre.bio or 'Aucune bio pour l instant.' }}
-                    </p>
-                    <p class="card-text">{{ membre.passions }}</p>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ membre.username }}</h5>
+                        <p class="card-text text-muted">
+                            {{ membre.bio or 'Aucune bio pour l instant.' }}
+                        </p>
+                        <p class="card-text">{{ membre.passions }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 {% endblock %}
