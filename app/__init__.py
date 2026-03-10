@@ -24,6 +24,9 @@ def create_app():
 
     from app.decouverte.routes import decouverte
     app.register_blueprint(decouverte)
+    
+    from app.publication.routes import publication
+    app.register_blueprint(publication)
 
     @login_manager.user_loader
     def load_user(user_id):
