@@ -9,6 +9,9 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <a href="/profil/{{ post.user_id }}">{{ post.username }}</a>
+                        {% if post.image %}
+                            <img src="/static/uploads/{{ post.image }}" class="img-fluid mb-2">
+                        {% endif %}
                         <p class="card-text text-muted">
                             {{ post.contenu or 'Aucune bio pour l instant.' }}
                         </p>

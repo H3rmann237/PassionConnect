@@ -29,6 +29,9 @@
         {% for pub in publications %}
             <div class="card mb-3">
                 <div class="card-body">
+                    {% if pub.image %}
+                        <img src="/static/uploads/{{ pub.image }}" class="img-fluid mb-2">
+                    {% endif %}
                     <p>{{ pub.contenu }}</p>
                     <small class="text-muted">{{ pub.created_at }}</small>
                 </div>
