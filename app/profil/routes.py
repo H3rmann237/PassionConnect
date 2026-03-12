@@ -53,3 +53,27 @@ def modifier_profil():
         return redirect(url_for('profil.mon_profil'))
     db.close()
     return render_template('modifier_profil.html', toutes_passions = toutes_passions)
+
+@profil.route('/profil/<int:user_id>')
+def profil_public(user_id):
+    db = get_db()
+    cursor = db.cursor()
+    
+    user = cursor.execute(
+        'SELECT * FROM user WHERE id = ?', (user_id,)
+    ).fetchone()
+
+    passions = cursor.execute('''
+        SELECT passion.nom, passion.icone FROM passion
+        JOIN user_passion ON passion.id = user_passion.passion_id
+        WHERE user_passion.user_id = ?
+    ''', (user_id,)).fetchall()
+
+    publications = cursor.execute('''
+        SELECT * FROM publication
+        WHERE user_id = ?
+        ORDER BY created_at DESC
+    ''', (user_id,)).fetchall()
+
+    db.close()
+    return render_template('profil_public.html', user=user, passions=passions, publications=publications)

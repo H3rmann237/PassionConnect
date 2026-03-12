@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block contenu %}
+    <h1>Profil de {{ user.username }}</h1>
+
+    <h2>BIO</h2>
+    <p>
+        {% if user.bio%}
+            {{user.bio}}
+        {% else %}
+            <em>Acune bio pour l'instant</em>
+        {% endif %}
+    </p>
+
+    <h2>Vos passions</h2>
+        {% if passions %}
+           <ul>
+                {% for p in passions %}
+                    <li><p>{{p.icone}} {{p.nom}}</p></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <em>Acune passion pour l'instant</em>
+        {% endif %}
+    
+{% endblock %}
