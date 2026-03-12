@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from flask_bcrypt import Bcrypt
 
 from app.models import User
@@ -10,6 +10,8 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/')
 def accueil():
+    if current_user.is_authenticated:
+        return redirect(url_for('publication.mes_publications'))
     return render_template('accueil.html')
 
 @auth.route('/inscription', methods=['GET','POST'])

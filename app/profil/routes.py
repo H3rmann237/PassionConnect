@@ -16,8 +16,14 @@ def mon_profil():
         WHERE user_passion.user_id = ?
     ''',(current_user.id,)).fetchall()
 
+    publications = cursor.execute('''
+        SELECT * FROM publication
+        WHERE user_id = ?
+        ORDER BY created_at DESC
+    ''', (current_user.id,)).fetchall()
     db.close()
-    return render_template('profil.html', passion = passion)
+
+    return render_template('profil.html', passion = passion,  publications=publications)
 
 @profil.route('/profil/modifier', methods=['GET','POST'])
 @login_required

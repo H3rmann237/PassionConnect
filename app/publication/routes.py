@@ -11,7 +11,7 @@ def mes_publications():
     cursor = db.cursor()
 
     publications = cursor.execute('''
-        SELECT publication.contenu, publication.created_at, user.username
+        SELECT publication.contenu, publication.created_at, user.username, user.id as user_id
         FROM publication
         JOIN user ON publication.user_id = user.id
         ORDER BY publication.created_at DESC
@@ -39,3 +39,4 @@ def new_publication():
         return redirect(url_for('publication.mes_publications'))
     
     return render_template('nouvelle_publication.html', publication = publication)
+

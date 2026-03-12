@@ -2,7 +2,7 @@
 
 {% block contenu %}
     <h1>Votre profil</h1>
-
+    <a href="/profil/modifier" class="btn btn-primary mb-4">Modifier le profil</a>
     <h2>BIO</h2>
     <p>
         {% if current_user.bio%}
@@ -22,5 +22,19 @@
         {% else %}
             <em>Acune passion pour l'instant</em>
         {% endif %}
+
+    <h2>Publications</h2>
+    {% if publications %}
+        {% for pub in publications %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p>{{ pub.contenu }}</p>
+                    <small class="text-muted">{{ pub.created_at }}</small>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <em>Aucune publication pour l'instant</em>
+    {% endif %}
     
 {% endblock %}

@@ -2,13 +2,13 @@
 
 {% block contenu %}
     <h1 class="mb-4">Publication</h1>
-
+    <a href="/publication/nouvelle" class="btn btn-primary mb-4">+ Nouvelle publication</a>
     <div class="row">
         {% for post in publications %}
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">{{ post.username }}</h5>
+                        <a href="/profil/{{ post.user_id }}">{{ post.username }}</a>
                         <p class="card-text text-muted">
                             {{ post.contenu or 'Aucune bio pour l instant.' }}
                         </p>

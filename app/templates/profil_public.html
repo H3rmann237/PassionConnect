@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block contenu %}
+    <a href="/decouverte" class="btn btn-outline-secondary mb-3">← Retour à la découverte</a>
     <h1>Profil de {{ user.username }}</h1>
 
     <h2>BIO</h2>
@@ -22,5 +23,19 @@
         {% else %}
             <em>Acune passion pour l'instant</em>
         {% endif %}
+
+    <h2>Publications</h2>
+    {% if publications %}
+        {% for pub in publications %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p>{{ pub.contenu }}</p>
+                    <small class="text-muted">{{ pub.created_at }}</small>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <em>Aucune publication pour l'instant</em>
+    {% endif %}
     
 {% endblock %}
