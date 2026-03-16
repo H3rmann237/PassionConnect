@@ -1,7 +1,35 @@
 {% extends 'base.html' %}
-
 {% block contenu %}
-    <h1>Bienvenue sur PassionConnect 🎨</h1>
-    <p>La plateforme des passionnés créatifs.</p>
-    <p>3D • Jeux Vidéo • Animation • Illustration</p>
+
+<section class="hero">
+    <div class="hero-tag">Plateforme créative</div>
+    <h1 class="hero-title">
+        Connecte-toi avec des<br>
+        <span class="hero-accent">passionnés</span> comme toi.
+    </h1>
+    <p class="hero-sub">3D • Jeux Vidéo • Animation • Illustration • Musique • Design</p>
+    <div class="hero-btns">
+        <a href="/inscription" class="btn-hero-primary">Rejoindre la communauté</a>
+        <a href="/connexion" class="btn-hero-secondary">Se connecter</a>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <span class="feature-icon">🔍</span>
+        <h3>Découvre</h3>
+        <p>Trouve des membres qui partagent tes passions créatives.</p>
+    </div>
+    <div class="feature-card">
+        <span class="feature-icon">📸</span>
+        <h3>Publie</h3>
+        <p>Partage tes créations et inspire la communauté.</p>
+    </div>
+    <div class="feature-card">
+        <span class="feature-icon">❤️</span>
+        <h3>Connecte</h3>
+        <p>Like, commente et construis ton réseau créatif.</p>
+    </div>
+</section>
+
 {% endblock %}

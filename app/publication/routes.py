@@ -14,9 +14,13 @@ def mes_publications():
     cursor = db.cursor()
 
     publications = cursor.execute('''
-        SELECT publication.contenu,publication.image, publication.created_at, user.username, user.id as user_id
+        SELECT publication.id as pub_id, publication.contenu, publication.image, 
+               publication.created_at, user.username, user.id as user_id,
+               COUNT(like.user_id) as nb_likes
         FROM publication
         JOIN user ON publication.user_id = user.id
+        LEFT JOIN like ON like.publication_id = publication.id
+        GROUP BY publication.id
         ORDER BY publication.created_at DESC
     ''').fetchall()
 
@@ -47,3 +51,26 @@ def new_publication():
     
     return render_template('nouvelle_publication.html', publication = publication)
 
+@publication.route('/publication/like/<int:publication_id>', methods=['POST'])
+@login_required
+def like(publication_id):
+    db = get_db()
+    cursor = db.cursor()
+
+    deja_like = cursor.execute('''
+        SELECT * FROM like WHERE user_id = ? AND publication_id = ?
+    ''', (current_user.id, publication_id)).fetchone()
+
+    if deja_like:
+        cursor.execute('''
+            DELETE FROM like WHERE user_id = ? AND publication_id = ?
+        ''', (current_user.id, publication_id))
+    else :
+        cursor.execute('''
+            INSERT INTO like (user_id, publication_id) VALUES (?, ?)
+        ''', (current_user.id, publication_id)) 
+
+    db.commit()
+    db.close()
+
+    return redirect(url_for('publication.mes_publications'))

@@ -1,9 +1,11 @@
 from flask import Blueprint, render_template, request
+from flask_login import login_required, current_user
 from database import get_db
 
 decouverte = Blueprint('decouverte',__name__)
 
 @decouverte.route('/decouverte')
+@login_required
 def page_decouverte():
     db = get_db()
     cursor = db.cursor()

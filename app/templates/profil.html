@@ -1,43 +1,45 @@
 {% extends 'base.html' %}
-
 {% block contenu %}
-    <h1>Votre profil</h1>
-    <a href="/profil/modifier" class="btn btn-primary mb-4">Modifier le profil</a>
-    <h2>BIO</h2>
-    <p>
-        {% if current_user.bio%}
-            {{current_user.bio}}
-        {% else %}
-            <em>Acune bio pour l'instant</em>
-        {% endif %}
-    </p>
 
-    <h2>Vos passions</h2>
-        {% if passion %}
-           <ul>
-                {% for p in passion %}
-                    <li><p>{{p.icone}} {{p.nom}}</p></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <em>Acune passion pour l'instant</em>
-        {% endif %}
+<div class="profil-header">
+    <div class="profil-avatar-large">{{ current_user.username[0].upper() }}</div>
+    <div class="profil-header-info">
+        <h1>{{ current_user.username }}</h1>
+        <p class="text-muted">{{ current_user.bio or 'Aucune bio pour l instant.' }}</p>
+    </div>
+    <a href="/profil/modifier" class="btn-rouge">Modifier le profil</a>
+</div>
 
+<div class="profil-passions">
+    <h2>Passions</h2>
+    {% if passion %}
+        <div class="passions-liste">
+            {% for p in passion %}
+                <span class="passion-tag">{{ p.icone }} {{ p.nom }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        <em class="text-muted">Aucune passion pour l'instant</em>
+    {% endif %}
+</div>
+
+<div class="profil-publications">
     <h2>Publications</h2>
     {% if publications %}
-        {% for pub in publications %}
-            <div class="card mb-3">
-                <div class="card-body">
-                    {% if pub.image %}
-                        <img src="/static/uploads/{{ pub.image }}" class="img-fluid mb-2">
-                    {% endif %}
-                    <p>{{ pub.contenu }}</p>
-                    <small class="text-muted">{{ pub.created_at }}</small>
-                </div>
+        <div class="feed">
+            {% for pub in publications %}
+            <div class="post-card">
+                {% if pub.image %}
+                    <img src="/static/uploads/{{ pub.image }}" class="post-image">
+                {% endif %}
+                <p class="post-contenu">{{ pub.contenu }}</p>
+                <span class="post-date">{{ pub.created_at }}</span>
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     {% else %}
-        <em>Aucune publication pour l'instant</em>
+        <em class="text-muted">Aucune publication pour l'instant</em>
     {% endif %}
-    
+</div>
+
 {% endblock %}

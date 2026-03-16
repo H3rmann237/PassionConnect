@@ -1,24 +1,37 @@
 {% extends 'base.html' %}
-
 {% block contenu %}
-    <h1 class="mb-4">Publication</h1>
-    <a href="/publication/nouvelle" class="btn btn-primary mb-4">+ Nouvelle publication</a>
-    <div class="row">
-        {% for post in publications %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <a href="/profil/{{ post.user_id }}">{{ post.username }}</a>
-                        {% if post.image %}
-                            <img src="/static/uploads/{{ post.image }}" class="img-fluid mb-2">
-                        {% endif %}
-                        <p class="card-text text-muted">
-                            {{ post.contenu or 'Aucune bio pour l instant.' }}
-                        </p>
-                        <p class="card-text">{{ post.created_at }}</p>
-                    </div>
-                </div>
+
+<div class="feed-header">
+    <h1>Publications</h1>
+    <a href="/publication/nouvelle" class="btn-rouge">+ Nouvelle publication</a>
+</div>
+
+<div class="feed">
+    {% for post in publications %}
+    <div class="post-card">
+        <div class="post-author">
+            <div class="post-avatar">{{ post.username[0].upper() }}</div>
+            <div>
+                <a href="/profil/{{ post.user_id }}" class="post-username">{{ post.username }}</a>
+                <span class="post-date">{{ post.created_at }}</span>
             </div>
-        {% endfor %}
+        </div>
+
+        {% if post.image %}
+            <img src="/static/uploads/{{ post.image }}" class="post-image">
+        {% endif %}
+
+        <p class="post-contenu">{{ post.contenu }}</p>
+
+        <div class="post-actions">
+            <form method="POST" action="/publication/like/{{ post.pub_id }}">
+                <button type="submit" class="btn-like">
+                    ❤️ <span>{{ post.nb_likes }}</span>
+                </button>
+            </form>
+        </div>
     </div>
+    {% endfor %}
+</div>
+
 {% endblock %}

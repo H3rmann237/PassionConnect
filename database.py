@@ -51,6 +51,16 @@ def init_db():
         )
     ''')
 
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS like (
+            user_id INTEGER NOT NULL,
+            publication_id INTEGER NOT NULL,
+            PRIMARY KEY (user_id, publication_id),
+            FOREIGN KEY (user_id) REFERENCES user(id),
+            FOREIGN KEY (publication_id) REFERENCES publication(id)?
+        )
+    ''')
+
     passions = [
         ('3D', '🗿'),
         ('Jeux Vidéo', '🎮'),
