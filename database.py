@@ -57,7 +57,7 @@ def init_db():
             publication_id INTEGER NOT NULL,
             PRIMARY KEY (user_id, publication_id),
             FOREIGN KEY (user_id) REFERENCES user(id),
-            FOREIGN KEY (publication_id) REFERENCES publication(id)?
+            FOREIGN KEY (publication_id) REFERENCES publication(id)
         )
     ''')
 
