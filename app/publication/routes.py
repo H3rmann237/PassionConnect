@@ -16,10 +16,10 @@ def mes_publications():
     publications = cursor.execute('''
         SELECT publication.id as pub_id, publication.contenu, publication.image, 
                publication.created_at, user.username, user.id as user_id,
-               COUNT(like.user_id) as nb_likes
+               COUNT(likes.user_id) as nb_likes
         FROM publication
         JOIN user ON publication.user_id = user.id
-        LEFT JOIN like ON like.publication_id = publication.id
+        LEFT JOIN likes ON likes.publication_id = publication.id
         GROUP BY publication.id
         ORDER BY publication.created_at DESC
     ''').fetchall()
@@ -58,16 +58,16 @@ def like(publication_id):
     cursor = db.cursor()
 
     deja_like = cursor.execute('''
-        SELECT * FROM like WHERE user_id = ? AND publication_id = ?
+        SELECT * FROM likes WHERE user_id = ? AND publication_id = ?
     ''', (current_user.id, publication_id)).fetchone()
 
     if deja_like:
         cursor.execute('''
-            DELETE FROM like WHERE user_id = ? AND publication_id = ?
+            DELETE FROM likes WHERE user_id = ? AND publication_id = ?
         ''', (current_user.id, publication_id))
     else :
         cursor.execute('''
-            INSERT INTO like (user_id, publication_id) VALUES (?, ?)
+            INSERT INTO likes (user_id, publication_id) VALUES (?, ?)
         ''', (current_user.id, publication_id)) 
 
     db.commit()
