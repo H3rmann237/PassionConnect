@@ -552,7 +552,7 @@ input:focus, textarea:focus {
 
     .nav-greeting { display: none; }
 
-    .hero { padding: 3rem 0 2rem; }
+    .hero { padding: 2rem 0 1.5rem; }
 
     .hero-title { font-size: 2rem; }
 
