@@ -1,6 +1,5 @@
-
 :root {
-    --accent: #FF3D00;
+    --accent: #FF3D00;  
     --accent2: #7C4DFF;
     --accent3: #00BFA5;
     --dark: #0A0A0A;
@@ -532,4 +531,58 @@ input:focus, textarea:focus {
     margin: 0;
     flex-shrink: 0;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+    .main-content { padding: 1.5rem 1rem; }
+
+    h1 { font-size: 1.6rem; }
+
+    .navbar-pc {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.3rem;
+    }
+
+    .nav-links a {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .nav-greeting { display: none; }
+
+    .hero { padding: 3rem 0 2rem; }
+
+    .hero-title { font-size: 2rem; }
+
+    .features { grid-template-columns: 1fr; }
+
+    .hero-btns { flex-direction: column; }
+
+    .membres-grid { grid-template-columns: 1fr; }
+
+    .profil-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .feed-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .passions-checkboxes { grid-template-columns: 1fr; }
+
+    .form-actions { flex-direction: column; }
+
+    .auth-card { padding: 1.5rem; }
 }
