@@ -270,12 +270,6 @@ input:focus, textarea:focus {
 
 .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-.features {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    padding: 2rem 0;
-}
 
 .feature-card {
     background: var(--card-bg);
