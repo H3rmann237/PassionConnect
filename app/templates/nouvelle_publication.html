@@ -12,6 +12,16 @@
             </div>
 
             <div class="form-group">
+                <label>Catégorie</label>
+                <select name="passion_id" required>
+                    <option value="">-- Choisir une catégorie --</option>
+                    {% for passion in toutes_passions %}
+                        <option value="{{ passion.id }}">{{ passion.icone }} {{ passion.nom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label>Image (optionnelle)</label>
                 <input type="file" name="image" accept="image/*">
             </div>

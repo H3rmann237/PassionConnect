@@ -6,6 +6,15 @@
     <a href="/publication/nouvelle" class="btn-rouge">+ Nouvelle publication</a>
 </div>
 
+<div class="filtres">
+    <a href="/publication" class="filtre-btn filtre-actif">Tous</a>
+    {% for passion in toutes_passions %}
+        <a href="/publication?passion={{ passion.nom }}" class="filtre-btn">
+            {{ passion.icone }} {{ passion.nom }}
+        </a>
+    {% endfor %}
+</div>
+
 <div class="feed">
     {% for post in publications %}
     <div class="post-card">
@@ -15,6 +24,9 @@
                 <a href="/profil/{{ post.user_id }}" class="post-username">{{ post.username }}</a>
                 <span class="post-date">{{ post.created_at }}</span>
             </div>
+            {% if post.passion_icone %}
+                <span class="filtre-btn ms-auto">{{ post.passion_icone }} {{ post.passion_nom }}</span>
+            {% endif %}
         </div>
 
         {% if post.image %}

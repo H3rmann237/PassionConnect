@@ -77,6 +77,13 @@ def init_db():
     ''', passions)
 
     db.commit()
+
+    try:
+        cursor.execute('ALTER TABLE publication ADD COLUMN passion_id INTEGER REFERENCES passion(id)')
+        db.commit()
+    except:
+        pass
+
     db.close()
     print('Base de données initialisée !')
 
