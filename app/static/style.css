@@ -531,7 +531,7 @@ input:focus, textarea:focus {
 
     .main-content { padding: 1.5rem 1rem; }
 
-    h1 { font-size: 1.4rem; }
+    h1 { font-size: 1.6rem; }
 
     .navbar-pc {
         flex-wrap: wrap;
@@ -554,7 +554,7 @@ input:focus, textarea:focus {
 
     .hero { padding: 2rem 0 1.5rem; }
 
-    .hero-title { font-size: 1.8 rem; }
+    .hero-title { font-size: 2rem; }
 
     .features { grid-template-columns: 1fr; }
 
