@@ -37,6 +37,7 @@
 
         <div class="post-actions">
             <form method="POST" action="/publication/like/{{ post.pub_id }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <button type="submit" class="btn-like">
                     ❤️ <span>{{ post.nb_likes }}</span>
                 </button>

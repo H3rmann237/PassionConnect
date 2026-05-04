@@ -21,7 +21,9 @@
         <div class="membre-info">
             <a href="/profil/{{ membre.id }}" class="membre-nom">{{ membre.username }}</a>
             <p class="membre-bio">{{ membre.bio or 'Aucune bio pour l instant.' }}</p>
-            <p class="membre-passions">{{ membre.passions }}</p>
+            {% if membre.passions %}
+                <p class="membre-passions">{{ membre.passions }}</p>
+            {% endif %}
         </div>
     </div>
     {% endfor %}

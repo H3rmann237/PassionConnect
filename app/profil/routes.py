@@ -32,11 +32,16 @@ def modifier_profil():
     cursor =db.cursor()
 
     toutes_passions = cursor.execute('SELECT * FROM passion').fetchall()
-    print("Passions trouvées :", len(toutes_passions))
+    passion_utilisateur = cursor.execute('''
+        SELECT passion_id FROM user_passion WHERE user_id = ?         
+    ''', (current_user.id,)).fetchall()
+
+    passion_ids = [p['passion_id'] for p in passion_utilisateur]
 
     if request.method == 'POST':
         bio = request.form['bio']
         passions_choisies = request.form.getlist('passions')
+
 
         cursor.execute(
             'UPDATE user SET bio = ? WHERE id = ?',
@@ -58,7 +63,7 @@ def modifier_profil():
         db.close()
         return redirect(url_for('profil.mon_profil'))
     db.close()
-    return render_template('modifier_profil.html', toutes_passions = toutes_passions)
+    return render_template('modifier_profil.html', toutes_passions = toutes_passions, passion_ids = passion_ids)
 
 @profil.route('/profil/<int:user_id>')
 def profil_public(user_id):

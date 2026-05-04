@@ -6,6 +6,7 @@
         <h1>Modifier le profil</h1>
 
         <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <div class="form-group">
                 <label>Bio</label>
                 <textarea name="bio" rows="4" placeholder="Parle de toi...">{{ current_user.bio or '' }}</textarea>
@@ -13,10 +14,13 @@
 
             <div class="form-group">
                 <label>Tes passions</label>
-                <div class="passions-checkboxes">
+                <div class="passions-checkboxes"> 
                     {% for passion in toutes_passions %}
                         <label class="checkbox-passion">
-                            <input type="checkbox" name="passions" value="{{ passion.id }}">
+                            <input type="checkbox" name="passions" value="{{ passion.id }}"
+                                {% if passion.id in passion_ids %}
+                                    checked
+                                {% endif %} >
                             <span>{{ passion.icone }} {{ passion.nom }}</span>
                         </label>
                     {% endfor %}

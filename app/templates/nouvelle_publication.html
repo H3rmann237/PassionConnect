@@ -6,6 +6,7 @@
         <h1>Nouvelle publication</h1>
 
         <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <div class="form-group">
                 <label>Contenu</label>
                 <textarea name="contenu" rows="4" placeholder="Partage quelque chose..."></textarea>
